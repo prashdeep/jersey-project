@@ -3,9 +3,12 @@ package com.hexaware;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 @XmlRootElement(name="student")
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Student {
 
     @XmlElement(name="id")
@@ -15,11 +18,9 @@ public class Student {
     @XmlElement(name="grade")
     private int grade;
 
-    public Student(){
-
-    }
-
-    public Student(int id, String name, int grade){
+    @JsonCreator
+    public Student(@JsonProperty("id")int id, 
+        @JsonProperty("name")String name, @JsonProperty("grade")int grade){
         this.id = id;
         this.name = name;
         this.grade = grade;
