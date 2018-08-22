@@ -1,11 +1,23 @@
 package com.hexaware;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@XmlRootElement(name="student")
 public class Student {
 
+    @XmlElement(name="id")
     private int id;
+    @XmlElement(name="name")
     private String name;
-
+    @XmlElement(name="grade")
     private int grade;
+
+    public Student(){
+
+    }
 
     public Student(int id, String name, int grade){
         this.id = id;
