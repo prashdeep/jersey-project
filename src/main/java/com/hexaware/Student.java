@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @XmlRootElement(name="student")
@@ -18,8 +19,11 @@ public class Student {
     @XmlElement(name="grade")
     private int grade;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MMM-yyyy")
+    private Date joiningDate;
+   
     @JsonCreator
-    public Student(@JsonProperty("id")int id, 
+    protected Student(@JsonProperty("id")int id, 
         @JsonProperty("name")String name, @JsonProperty("grade")int grade){
         this.id = id;
         this.name = name;

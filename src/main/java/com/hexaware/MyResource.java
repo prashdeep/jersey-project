@@ -7,7 +7,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
-
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 
 /**
  * Root resource (exposed at "myresource" path)
@@ -34,9 +35,16 @@ public class MyResource {
 
     @GET
     @Path("/{id}")
-    public String getStudents(@PathParam("id") int id) {
-        System.out.println("Came inside the getStudents method ");
-        return "Got it!";
+    public Response getStudents(@PathParam("id") int id) {
+        System.out.println("Came inside the getStudents method "+ id);
+        //dao
+        if(id == 1){
+            return Response.ok().entity("Student not found").build();
+        } else if (id == 2){
+            return Response.status(Response.Status.BAD_REQUEST).entity("Student not found").build();
+        } else{
+            return Response.status(Response.Status.FORBIDDEN).entity("Student not found").build();
+        }
     } 
 
 
